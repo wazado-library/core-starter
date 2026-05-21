@@ -1,11 +1,29 @@
+import java.text.SimpleDateFormat
+
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'maven-publish'
     id 'org.springframework.boot' version '3.5.14'
     id 'io.spring.dependency-management' version '1.1.7'
 }
+def buildVersion="develop-${new SimpleDateFormat("yyyyMMdd-hhmmss").format(new Date())}-SNAPSHOT"
+def projectGroup="com.wizado"
+def projectArtifact="core-starter"
 
-group = 'com.wizado'
-version = '0.0.1-SNAPSHOT'
+def env=rootProject.file(".env")
+if(env.exists()) {
+    env.eachLine {line -> {
+        if (line.contains("=")) {
+            def lineValue=line.split("=")
+            System.setProperty(lineValue[0].trim(), lineValue[1].trim())
+        }
+    }}
+}
+def GIT_USERNAME=System.getProperty("GIT_USERNAME")
+def GIT_TOKEN=System.getProperty("GIT_TOKEN")
+
+group = projectGroup
+version =buildVersion
 description = 'core-starter'
 
 java {
@@ -22,12 +40,39 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testCompileOnly 'org.projectlombok:lombok'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            groupId=projectGroup
+            artifactId=projectArtifact
+            version=buildVersion
+
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name="GithubPackage"
+            url=uri("https://maven.pkg.github.com/wazado-library/core-starter")
+            credentials {
+                username=GIT_USERNAME
+                password=GIT_TOKEN
+            }
+        }
+    }
 }
