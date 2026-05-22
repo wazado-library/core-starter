@@ -1,4 +1,4 @@
-package com.wizado.corestarter.infrastructure.bootstrap.template;
+package com.wizado.corestarter.domain.entity.template;
 
 import lombok.Builder;
 import org.springframework.data.domain.Page;

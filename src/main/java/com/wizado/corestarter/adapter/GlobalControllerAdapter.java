@@ -4,7 +4,7 @@ import com.wizado.corestarter.domain.constant.enums.EErrorCode;
 import com.wizado.corestarter.domain.constant.exception.ResourceDuplicatedException;
 import com.wizado.corestarter.domain.constant.exception.ResourceInvalidException;
 import com.wizado.corestarter.domain.constant.exception.ResourceNotFoundException;
-import com.wizado.corestarter.infrastructure.bootstrap.template.ValueResponse;
+import com.wizado.corestarter.domain.entity.template.ValueResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
