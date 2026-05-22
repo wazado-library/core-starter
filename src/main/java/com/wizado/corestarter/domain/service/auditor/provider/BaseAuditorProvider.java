@@ -1,4 +1,4 @@
-package com.wizado.corestarter.domain.service;
+package com.wizado.corestarter.domain.service.auditor.provider;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
 package com.wizado.corestarter;
 
 import com.wizado.corestarter.adapter.GlobalControllerAdapter;
-import com.wizado.corestarter.domain.service.BaseAuditorProvider;
+import com.wizado.corestarter.domain.service.auditor.provider.BaseAuditorProvider;
 import com.wizado.corestarter.infrastructure.bootstrap.BaseAuditorAware;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

@@ -1,4 +1,4 @@
-package com.wizado.corestarter.domain.entity.template;
+package com.wizado.corestarter.domain.entity.template.response;
 
 import lombok.Builder;
 import org.springframework.http.HttpStatus;
