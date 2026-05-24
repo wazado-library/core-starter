@@ -1,4 +1,4 @@
-package com.wazado.corestarter.infrastructure.bootstrap.configuration;
+package com.wazado.corestarter.infrastructure.bootstrap.configuration.auditor;
 
 import com.wazado.corestarter.domain.service.auditor.provider.BaseAuditorProvider;
 import lombok.AccessLevel;

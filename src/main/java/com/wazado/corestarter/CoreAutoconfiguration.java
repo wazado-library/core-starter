@@ -2,7 +2,7 @@ package com.wazado.corestarter;
 
 import com.wazado.corestarter.adapter.GlobalControllerAdapter;
 import com.wazado.corestarter.domain.service.auditor.provider.BaseAuditorProvider;
-import com.wazado.corestarter.infrastructure.bootstrap.configuration.BaseAuditorAware;
+import com.wazado.corestarter.infrastructure.bootstrap.configuration.auditor.BaseAuditorAware;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -28,4 +28,6 @@ public class CoreAutoconfiguration {
     public BaseAuditorAware baseAuditorAware(BaseAuditorProvider baseAuditorProvider) {
         return new BaseAuditorAware(baseAuditorProvider);
     }
+
+
 }
