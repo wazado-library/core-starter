@@ -19,17 +19,23 @@ public class GlobalControllerAdapter {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     ResponseEntity<ValueResponse<?>> resourceNotFoundHandler(ResourceNotFoundException e) {
-        return ResponseEntity.ok(ValueResponse.fail(e.getMessage(), e.getErrorCode(),  HttpStatus.NOT_FOUND));
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ValueResponse.fail(e.getMessage(), e.getErrorCode(),  HttpStatus.NOT_FOUND));
     }
 
     @ExceptionHandler(ResourceDuplicatedException.class)
     ResponseEntity<ValueResponse<?>> resourceDuplicatedHandler(ResourceDuplicatedException e) {
-        return ResponseEntity.ok(ValueResponse.fail(e.getMessage(), e.getErrorCode(),  HttpStatus.CONFLICT));
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(ValueResponse.fail(e.getMessage(), e.getErrorCode(),  HttpStatus.CONFLICT));
     }
 
     @ExceptionHandler(ResourceInvalidException.class)
     ResponseEntity<ValueResponse<?>> resourceInvalidHandler(ResourceInvalidException e) {
-        return ResponseEntity.ok(ValueResponse.fail(e.getMessage(), e.getErrorCode(),  HttpStatus.BAD_REQUEST));
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ValueResponse.fail(e.getMessage(), e.getErrorCode(),  HttpStatus.BAD_REQUEST));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -40,7 +46,9 @@ public class GlobalControllerAdapter {
         });
         String message = String.join(", ", err.values());
         ValueResponse<?> valueResponse = ValueResponse.fail(message, EErrorCode.SYS_004.getCode(), HttpStatus.BAD_REQUEST);
-        return ResponseEntity.ok(valueResponse);
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(valueResponse);
     }
 
     @ExceptionHandler(NullPointerException.class)

@@ -16,10 +16,11 @@ public class SorterHandler {
         }
         if(Objects.equals(split.length, 2)) {
             String direction = split[1];
-            switch (direction.toLowerCase()) {
+            return switch (direction.toLowerCase()) {
                 case "asc" -> Sort.by(split[0]).ascending();
                 case "desc" -> Sort.by(split[0]).descending();
-            }
+                default -> Sort.unsorted();
+            };
         }
         return Sort.unsorted();
     }

@@ -6,7 +6,10 @@ import com.wazado.corestarter.infrastructure.bootstrap.configuration.auditor.Bas
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.auditing.DateTimeProvider;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Optional;
 
 @AutoConfiguration
@@ -29,5 +32,10 @@ public class CoreAutoconfiguration {
         return new BaseAuditorAware(baseAuditorProvider);
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public DateTimeProvider dateTimeProvider() {
+        return () -> Optional.of(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")));
+    }
 
 }
